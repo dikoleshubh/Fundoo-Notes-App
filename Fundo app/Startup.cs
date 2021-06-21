@@ -54,7 +54,7 @@ namespace Fundo_app
             services.AddTransient<IUserBL, UserBL>();
             services.AddTransient<IUserRL, UserR>();
             services.AddControllersWithViews().AddNewtonsoftJson(options =>options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
+           // var key = Encoding.UTF8.GetBytes(Configuration["Key"]);
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -70,6 +70,16 @@ namespace Fundo_app
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };
+            });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllHeaders",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+                    });
             });
 
 

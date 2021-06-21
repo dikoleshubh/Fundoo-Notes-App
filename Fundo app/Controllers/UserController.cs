@@ -8,6 +8,8 @@ using Business_Layer.Interfaces;
 using Common_Layer;
 using StackExchange.Redis;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
+
 
 namespace Fundo_app.Controllers
 {
@@ -97,60 +99,58 @@ namespace Fundo_app.Controllers
 
 
 
-
-
-
-
-        /// <summary>
-        /// request for forgot password
-        /// </summary>
-        /// <param name="emailAddress"></emailAddress>
-        /// <returns></returns>
         [HttpPost]
-        [Route("api/forgetPassword")]
-        public IActionResult ForgotPassword(string emailAddress)
+        [Route("ForgotPassword")]
+        public IActionResult ForgotPassword(string email)
         {
             try
             {
-                var result = this.userBl.SendEmail(emailAddress);
-                if (result.Equals(true))
+                //_logger.LogInformation("The API for Forgot Password has accessed");
+                var result = this.userBl.ForgotPassword(email);
+                if (result == true)
                 {
-                    return this.Ok(new ResponseModel<string>() { Status = true, Message = "Mail Sent Sucessfully", Data = emailAddress });
+                   // _logger.LogInformation("Link has sent to given gmail to reset password");
+                    return this.Ok(new ResponseModel<string>() { Status = true, Message = "Link has sent to the given email address to reset the password" });
                 }
 
-                return this.BadRequest(new { Status = false, Message = "Email is not correct:Please enter valid email" });
+                return this.BadRequest(new ResponseModel<string>() { Status = false, Message = "Unable to sent link to given email address. This Email doesn't exist in database." });
             }
             catch (Exception ex)
             {
-                return this.NotFound(new { Status = false, Message = ex.Message });
+                //_logger.LogWarning("Exception encountered while sending link to given mail address" + ex.Message);
+                return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
 
         /// <summary>
-        /// request for reset password
+        /// Controller method for Reset password method invocation
         /// </summary>
-        /// <param name="resetModel"></resetModel>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("api/resetpassword")]
-        public IActionResult ResetPassword([FromBody] ResetPasswordModel resetModel)
+        /// <param name="resetPassword"></param>
+        /// <returns>response data</returns>
+        [HttpPut]
+        [Route("ResetPassword")]
+        public IActionResult ResetPassword(ResetPasswordModel resetPassword)
         {
             try
             {
-                bool result = this.userBl.ResetPassword(resetModel);
+                //_logger.LogInformation("The API for Reset Password has accessed");
+                var result = this.userBl.ResetPassword(resetPassword);
                 if (result == true)
                 {
-                    return this.Ok(new ResponseModel<ResetPasswordModel>() { Status = true, Message = "Password Changed" });
+                  //  _logger.LogInformation("Password has reset successfully");
+                    return this.Ok(new ResponseModel<string>() { Status = true, Message = "Password Reset Successfull ! ", Data = resetPassword.Email });
                 }
 
-                return this.BadRequest(new ResponseModel<ResetPasswordModel>() { Status = false, Message = "cannot change password" });
+                return this.BadRequest(new { Status = false, Message = "Failed to Reset Password. Given Email doesn't exist in database." });
             }
             catch (Exception ex)
             {
-                return this.NotFound(new ResponseModel<ResetPasswordModel>() { Status = false, Message = ex.Message });
+                //_logger.LogWarning("Exception encountered while resetting the poassword" + ex.Message);
+                return this.NotFound(new ResponseModel<string>() { Status = false, Message = ex.Message });
             }
         }
     }
-
 }
+
+
 

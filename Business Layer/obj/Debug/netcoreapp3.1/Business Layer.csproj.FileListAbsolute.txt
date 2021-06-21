@@ -15,3 +15,6 @@ C:\Users\Admin\source\repos\Business Layer\obj\Debug\netcoreapp3.1\Business Laye
 C:\Users\Admin\source\repos\Business Layer\bin\Debug\netcoreapp3.1\Business Layer.runtimeconfig.json
 C:\Users\Admin\source\repos\Business Layer\bin\Debug\netcoreapp3.1\Business Layer.runtimeconfig.dev.json
 C:\Users\Admin\source\repos\Business Layer\obj\Debug\netcoreapp3.1\Business Layer.genruntimeconfig.cache
+C:\Users\Admin\source\repos\Business Layer\bin\Debug\netcoreapp3.1\FundooMSMQ.exe
+C:\Users\Admin\source\repos\Business Layer\bin\Debug\netcoreapp3.1\FundooMSMQ.pdb
+C:\Users\Admin\source\repos\Business Layer\bin\Debug\netcoreapp3.1\FundooMSMQ.exe.config

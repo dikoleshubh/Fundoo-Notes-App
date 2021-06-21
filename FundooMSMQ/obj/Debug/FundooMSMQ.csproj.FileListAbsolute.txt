@@ -1,0 +1,10 @@
+C:\Users\Admin\source\repos\FundooMSMQ\obj\Debug\FundooMSMQ.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\FundooMSMQ\obj\Debug\FundooMSMQ.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\FundooMSMQ\bin\Debug\FundooMSMQ.exe.config
+C:\Users\Admin\source\repos\FundooMSMQ\bin\Debug\FundooMSMQ.exe
+C:\Users\Admin\source\repos\FundooMSMQ\bin\Debug\FundooMSMQ.pdb
+C:\Users\Admin\source\repos\FundooMSMQ\bin\Debug\Experimental.System.Messaging.dll
+C:\Users\Admin\source\repos\FundooMSMQ\bin\Debug\Experimental.System.Messaging.xml
+C:\Users\Admin\source\repos\FundooMSMQ\obj\Debug\FundooMSMQ.csproj.CopyComplete
+C:\Users\Admin\source\repos\FundooMSMQ\obj\Debug\FundooMSMQ.exe
+C:\Users\Admin\source\repos\FundooMSMQ\obj\Debug\FundooMSMQ.pdb

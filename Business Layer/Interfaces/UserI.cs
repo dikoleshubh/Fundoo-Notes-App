@@ -12,7 +12,7 @@ namespace Business_Layer.Interfaces
         //public string Login(string email, string password);
         public string Login(string email, string password);
         public bool ResetPassword(ResetPasswordModel resetModel);
-        public bool SendEmail(string emailAddress);
+        public bool ForgotPassword(string email);
         public string GenerateToken(string email);
     }
 

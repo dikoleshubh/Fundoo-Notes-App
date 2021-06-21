@@ -9,6 +9,8 @@
       "Repository Layer/1.0.0": {
         "dependencies": {
           "CommonLayer": "1.0.0",
+          "Experimental.System.Messaging": "1.1.0",
+          "FundooMSMQ": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "3.0.0",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "3.1.0",
           "Microsoft.EntityFrameworkCore": "3.1.16",
@@ -22,6 +24,14 @@
         },
         "runtime": {
           "Repository Layer.dll": {}
+        }
+      },
+      "Experimental.System.Messaging/1.1.0": {
+        "runtime": {
+          "lib/netstandard2.0/Experimental.System.Messaging.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
+          }
         }
       },
       "Microsoft.AspNetCore.Authentication.JwtBearer/3.0.0": {
@@ -1042,6 +1052,8 @@
       },
       "CommonLayer/1.0.0": {
         "dependencies": {
+          "Experimental.System.Messaging": "1.1.0",
+          "FundooMSMQ": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "3.0.0",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "3.1.0",
           "Microsoft.EntityFrameworkCore": "3.1.16",
@@ -1055,6 +1067,11 @@
         "runtime": {
           "CommonLayer.dll": {}
         }
+      },
+      "FundooMSMQ/1.0.0": {
+        "runtime": {
+          "FundooMSMQ.exe": {}
+        }
       }
     }
   },
@@ -1063,6 +1080,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Experimental.System.Messaging/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vub7Mtt2WFdFKTZKECVuZx6feP5kUpS9EfVy+Yu4GDfdlMwivRdX4TbdkDYS2lKqCjqzUbnxTbJei1IOqC+CnA==",
+      "path": "experimental.system.messaging/1.1.0",
+      "hashPath": "experimental.system.messaging.1.1.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.JwtBearer/3.0.0": {
       "type": "package",
@@ -1800,6 +1824,11 @@
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
     "CommonLayer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FundooMSMQ/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

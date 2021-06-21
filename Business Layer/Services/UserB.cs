@@ -43,11 +43,11 @@ namespace Business_Layer.Services
                 throw new Exception(ex.Message);
             }
         }
-        public bool ResetPassword(ResetPasswordModel resetModel)
+        public bool ForgotPassword(string email)
         {
             try
             {
-                bool result = this.userRL.ResetPassword(resetModel);
+                bool result = this.userRL.ForgotPassword(email);
                 return result;
             }
             catch (Exception ex)
@@ -55,11 +55,17 @@ namespace Business_Layer.Services
                 throw new Exception(ex.Message);
             }
         }
-        public bool SendEmail(string emailAddress)
+
+        /// <summary>
+        /// Reset Password Method 
+        /// </summary>
+        /// <param name="resetPassword">variable of type ResetPasswordModel</param>
+        /// <returns>boolean result</returns>
+        public bool ResetPassword(ResetPasswordModel resetPassword)
         {
             try
             {
-                bool result = this.userRL.SendEmail(emailAddress);
+                bool result = this.userRL.ResetPassword(resetPassword);
                 return result;
             }
             catch (Exception ex)
@@ -67,6 +73,7 @@ namespace Business_Layer.Services
                 throw new Exception(ex.Message);
             }
         }
+
 
         public string GenerateToken(string Email)
         {

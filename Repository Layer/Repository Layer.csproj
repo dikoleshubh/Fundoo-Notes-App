@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Experimental.System.Messaging" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.16" />
@@ -23,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common Layer\CommonLayer.csproj" />
+    <ProjectReference Include="..\FundooMSMQ\FundooMSMQ.csproj" />
   </ItemGroup>
 
 </Project>

@@ -27,7 +27,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Admin\\source\\repos\\FundooMSMQ\\FundooMSMQ.csproj": {
+                "projectPath": "C:\\Users\\Admin\\source\\repos\\FundooMSMQ\\FundooMSMQ.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -40,6 +44,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Experimental.System.Messaging": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[3.0.0, )"
@@ -102,6 +110,16 @@
         }
       }
     },
+    "C:\\Users\\Admin\\source\\repos\\FundooMSMQ\\FundooMSMQ.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\FundooMSMQ\\FundooMSMQ.csproj",
+        "projectName": "FundooMSMQ",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\FundooMSMQ\\FundooMSMQ.csproj"
+      },
+      "frameworks": {
+        "net48": {}
+      }
+    },
     "C:\\Users\\Admin\\source\\repos\\Repository Layer\\Repository Layer.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -128,6 +146,9 @@
             "projectReferences": {
               "C:\\Users\\Admin\\source\\repos\\Common Layer\\CommonLayer.csproj": {
                 "projectPath": "C:\\Users\\Admin\\source\\repos\\Common Layer\\CommonLayer.csproj"
+              },
+              "C:\\Users\\Admin\\source\\repos\\FundooMSMQ\\FundooMSMQ.csproj": {
+                "projectPath": "C:\\Users\\Admin\\source\\repos\\FundooMSMQ\\FundooMSMQ.csproj"
               }
             }
           }
@@ -142,6 +163,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Experimental.System.Messaging": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[3.0.0, )"

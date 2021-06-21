@@ -10,6 +10,8 @@ using System.Net;
 using System.Net.Mail;
 using System.Security.Claims;
 using System.Text;
+using FundooMSMQ;
+using Microsoft.EntityFrameworkCore;
 
 namespace Repository_Layer.Services
 {
@@ -149,59 +151,74 @@ namespace Repository_Layer.Services
                 throw new ArgumentNullException(ex.Message);
             }
         }
-
-        public bool SendEmail(string emailAddress)
+        public bool ForgotPassword(string email)
         {
             try
             {
-                MailMessage message = new MailMessage();
-                //SmtpClient smtp = new SmtpClient();
-                message.From = new MailAddress("dikole.shubh@gmail.com");
-                message.To.Add(new MailAddress(emailAddress));
-                message.Subject = "forget password link";
-                message.IsBodyHtml = true; //to make message body as html  
-                message.Body = "body";
-                SmtpClient smtp = new SmtpClient
+                bool result;
+                string user;
+                string mailSubject = "Link to reset your FundooNotes App Credentials";
+                var userCheck = _userDbContext.Users.SingleOrDefault(x => x.Email == email);
+                if (userCheck != null)
                 {
-                    Host = "smtp.gmail.com",
-                    Port = 587,
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential("dikole.shubh@gmail.com", "Pass@123")
-                };
-                //smtp.Port = 587;
-                //smtp.Host = "smtp.gmail.com"; //for gmail host  
-                //smtp.EnableSsl = true;
-                //smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                //smtp.UseDefaultCredentials = false;
-                //smtp.Credentials = new NetworkCredential("nurainkk0110@gmail.com", "nurainkk@0110");
-                //smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtp.Send(message);
-                return true;
+                    Sender sender = new Sender();
+                    sender.SendMessage();
+                    Receiver receiver = new Receiver();
+                    var messageBody = receiver.receiverMessage();
+                    user = messageBody;
+                    using (MailMessage mailMessage = new MailMessage("dikole.shubh@gmail.com", email))
+                    {
+                        mailMessage.Subject = mailSubject;
+                        mailMessage.Body = user;
+                        mailMessage.IsBodyHtml = true;
+                        SmtpClient Smtp = new SmtpClient();
+                        Smtp.Host = "smtp.gmail.com";
+                        Smtp.EnableSsl = true;
+                        Smtp.UseDefaultCredentials = false;
+                        Smtp.Credentials = new NetworkCredential("donot.copyme@gmail.com", "HeyListen@852");
+                        Smtp.Port = 587;
+                        Smtp.Send(mailMessage);
+                    }
+
+                    result = true;
+                    return result;
+                }
+
+                result = false;
+                return result;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error in base64Encode" + ex.Message);
+                throw new Exception(ex.Message);
             }
         }
 
-       
-        public bool ResetPassword(ResetPasswordModel resetModel)
+        /// <summary>
+        /// Method to reset old user password with new one.
+        /// </summary>
+        /// <param name="resetPassword">variable of type ResetPasswordModel</param>
+        /// <returns>boolean result</returns>
+        public bool ResetPassword(ResetPasswordModel resetPassword)
         {
             try
             {
-                var user = this._userDbContext.Users.Where(x => x.Email == resetModel.Email).SingleOrDefault();
-                if (resetModel != null && user != null)
+                bool result;
+                string encodedPassword = EncryptPassword(resetPassword.Password);
+                var userPassword = _userDbContext.Users.SingleOrDefault(x => x.Email == resetPassword.Email);
+                if (userPassword != null)
                 {
-                    user.Password = resetModel.NewPassword;
-                    this._userDbContext.Users.Update(user);
-                    return true;
+                    userPassword.Password = encodedPassword;
+                    _userDbContext.Entry(userPassword).State = EntityState.Modified;
+                    _userDbContext.SaveChanges();
+
+                    result = true;
+                    return result;
                 }
 
-                return false;
+                result = false;
+                return result;
             }
-            catch (ArgumentNullException ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }

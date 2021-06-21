@@ -13,3 +13,6 @@ C:\Users\Admin\source\repos\Repository Layer\obj\Debug\netcoreapp3.1\Repository 
 C:\Users\Admin\source\repos\Repository Layer\bin\Debug\netcoreapp3.1\Repository Layer.runtimeconfig.json
 C:\Users\Admin\source\repos\Repository Layer\bin\Debug\netcoreapp3.1\Repository Layer.runtimeconfig.dev.json
 C:\Users\Admin\source\repos\Repository Layer\obj\Debug\netcoreapp3.1\Repository Layer.genruntimeconfig.cache
+C:\Users\Admin\source\repos\Repository Layer\bin\Debug\netcoreapp3.1\FundooMSMQ.exe
+C:\Users\Admin\source\repos\Repository Layer\bin\Debug\netcoreapp3.1\FundooMSMQ.pdb
+C:\Users\Admin\source\repos\Repository Layer\bin\Debug\netcoreapp3.1\FundooMSMQ.exe.config
