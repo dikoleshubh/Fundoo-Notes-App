@@ -9,6 +9,11 @@ namespace Business_Layer.Interfaces
     {
         bool SampleUserApi(User user);
         User AddUser(User user);
+        //public string Login(string email, string password);
+        public string Login(string email, string password);
+        public bool ResetPassword(ResetPasswordModel resetModel);
+        public bool SendEmail(string emailAddress);
+        public string GenerateToken(string email);
     }
 
 }

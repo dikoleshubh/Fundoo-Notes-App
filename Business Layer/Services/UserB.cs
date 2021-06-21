@@ -31,6 +31,55 @@ namespace Business_Layer.Services
             this.userRL.AddUser(user);
             return user;
         }
+        public string Login(string email, string password)
+        {
+            try
+            {
+                string result = this.userRL.Login(email, password);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public bool ResetPassword(ResetPasswordModel resetModel)
+        {
+            try
+            {
+                bool result = this.userRL.ResetPassword(resetModel);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public bool SendEmail(string emailAddress)
+        {
+            try
+            {
+                bool result = this.userRL.SendEmail(emailAddress);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public string GenerateToken(string Email)
+        {
+            try
+            {
+                return this.userRL.GenerateToken(Email);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
-    
 }
+    
+

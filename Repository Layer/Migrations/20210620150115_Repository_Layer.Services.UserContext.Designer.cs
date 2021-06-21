@@ -9,7 +9,7 @@ using Repository_Layer.Services;
 namespace Repository_Layer.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20210617151102_Repository_Layer.Services.UserContext")]
+    [Migration("20210620150115_Repository_Layer.Services.UserContext")]
     partial class Repository_LayerServicesUserContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,6 +34,9 @@ namespace Repository_Layer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
