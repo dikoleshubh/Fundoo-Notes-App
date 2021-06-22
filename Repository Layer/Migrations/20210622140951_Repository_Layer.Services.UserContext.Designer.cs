@@ -9,7 +9,7 @@ using Repository_Layer.Services;
 namespace Repository_Layer.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20210620150115_Repository_Layer.Services.UserContext")]
+    [Migration("20210622140951_Repository_Layer.Services.UserContext")]
     partial class Repository_LayerServicesUserContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,6 +19,44 @@ namespace Repository_Layer.Migrations
                 .HasAnnotation("ProductVersion", "3.1.16")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Common_Layer.NotesModel", b =>
+                {
+                    b.Property<int>("NotesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Collaborator")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("ID")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Lable")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Reminder")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("NotesId");
+
+                    b.HasIndex("ID");
+
+                    b.ToTable("FundooNotes");
+                });
 
             modelBuilder.Entity("Common_Layer.User", b =>
                 {
@@ -45,6 +83,15 @@ namespace Repository_Layer.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Common_Layer.NotesModel", b =>
+                {
+                    b.HasOne("Common_Layer.User", "User")
+                        .WithMany()
+                        .HasForeignKey("ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

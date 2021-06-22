@@ -18,6 +18,44 @@ namespace Repository_Layer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Common_Layer.NotesModel", b =>
+                {
+                    b.Property<int>("NotesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Collaborator")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("ID")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Lable")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Reminder")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("NotesId");
+
+                    b.HasIndex("ID");
+
+                    b.ToTable("FundooNotes");
+                });
+
             modelBuilder.Entity("Common_Layer.User", b =>
                 {
                     b.Property<long>("ID")
@@ -43,6 +81,15 @@ namespace Repository_Layer.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Common_Layer.NotesModel", b =>
+                {
+                    b.HasOne("Common_Layer.User", "User")
+                        .WithMany()
+                        .HasForeignKey("ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
