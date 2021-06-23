@@ -166,7 +166,7 @@ namespace Repository_Layer.Services
                     Receiver receiver = new Receiver();
                     var messageBody = receiver.receiverMessage();
                     user = messageBody;
-                    using (MailMessage mailMessage = new MailMessage("dikole.shubh@gmail.com", email))
+                    using (MailMessage mailMessage = new MailMessage("donot.copyme@gmail.com", email))
                     {
                         mailMessage.Subject = mailSubject;
                         mailMessage.Body = user;
