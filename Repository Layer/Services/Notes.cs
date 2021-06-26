@@ -121,7 +121,7 @@ namespace Repository_Layer.Services
             try
             {
                 bool result;
-                var note = _userDbContext.FundooNotes.Find(id);
+                var note = _userDbContext.FundooNotes.FirstOrDefault(u => u.NotesId == id);
                 if (note != null)
                 {
                     if (note.Is_Trash == true)
@@ -243,7 +243,7 @@ namespace Repository_Layer.Services
             try
             {
                 string message;
-                var note = _userDbContext.FundooNotes.Find(id);
+                var note = _userDbContext.FundooNotes.FirstOrDefault(u => u.NotesId == id);
                 if (note != null)
                 {
                     if (note.Archieve == false)
@@ -488,7 +488,7 @@ namespace Repository_Layer.Services
             try
             {
                 bool result;
-                var note = _userDbContext.FundooNotes.Find(id);
+                var note = _userDbContext.FundooNotes.FirstOrDefault(u => u.NotesId == id);
                 if (note != null)
                 {
                     Account account = new Account(
