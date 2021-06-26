@@ -1,29 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Business_Layer.Interfaces;
+﻿using Business_Layer.Interfaces;
 using Common_Layer;
 using Microsoft.AspNetCore.Http;
 using Repository_Layer.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Business_Layer.Services
 {
-    public class NotesBL : INotesBL
+    /// </summary>
+    public class NotesManager : INotesManager
     {
-        private readonly INotesBL notes;
+        /// <summary>
+        /// note field of type INotes
+        /// </summary>
+        private  INotes notesRL;
 
-        public NotesBL(INotesBL notes)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NotesManager" /> class.
+        /// </summary>
+        /// <param name="notes">notes parameter of type INotes</param>
+        public NotesManager(INotes notes)
         {
-            this.notes = notes;
+            this.notesRL = notes;
         }
 
-       
-        public bool AddNewNote(NotesModel note)
+        /// <summary>
+        /// Method to Call AddNewNote() method to create new note
+        /// </summary>
+        /// <param name="note">note parameter</param>
+        /// <returns>boolean result</returns>
+        public NotesModel AddNewNote(NotesModel note, long ids)
         {
             try
             {
-                bool result = this.notes.AddNewNote(note);
-                return result;
+                this.notesRL.AddNewNote(note,ids);
+                return note;
             }
             catch (Exception ex)
             {
@@ -31,14 +43,12 @@ namespace Business_Layer.Services
             }
         }
 
-       
-        ///  Method to Call RetrievNote() method to retriev
         
-        public IEnumerable<NotesModel> RetrievNote()
+        public bool RemoveNote(int id)
         {
             try
             {
-                IEnumerable<NotesModel> note = this.notes.RetrievNote();
+                bool note = this.notesRL.RemoveNote(id);
                 return note;
             }
             catch (Exception ex)
@@ -48,31 +58,15 @@ namespace Business_Layer.Services
         }
 
         /// <summary>
-        /// Method to Call RemoveNote() method to remove a note 
+        /// Method to Call UpdateNote() method to update a note 
         /// </summary>
-        /// <param name="id">note id</param>
-        /// <returns>string note message</returns>
-        public bool RemoveNote(int id)
-        {
-            try
-            {
-                bool note = this.notes.RemoveNote(id);
-                return note;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-    
-        /// Method to update a note 
-        
+        /// <param name="note">note id</param>
+        /// <returns>boolean result</returns>
         public bool UpdateNote(NotesModel note)
         {
             try
             {
-                bool result = this.notes.UpdateNote(note);
+                bool result = this.notesRL.UpdateNote(note);
                 return result;
             }
             catch (Exception ex)
@@ -81,30 +75,16 @@ namespace Business_Layer.Services
             }
         }
 
-        
+        /// <summary>
         /// Method to Call GetNoteById() method to remove a note 
-        
+        /// </summary>
+        /// <param name="id">note id</param>
+        /// <returns>string note message</returns>
         public IEnumerable<NotesModel> GetNoteById(int id)
         {
             try
             {
-                IEnumerable<NotesModel> note = this.notes.GetNoteById(id);
-                return note;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-       
-        /// Method to Pin Or Unpin a Note 
-        
-        public string PinOrUnpinNote(int id)
-        {
-            try
-            {
-                var note = this.notes.PinOrUnpinNote(id);
+                IEnumerable<NotesModel> note = this.notesRL.GetNoteById(id);
                 return note;
             }
             catch (Exception ex)
@@ -115,12 +95,32 @@ namespace Business_Layer.Services
 
         /// <summary>
         /// Method to Call PinOrUnpinNote() method to Pin Or Unpin a Note 
-        
+        /// </summary>
+        /// <param name="id">note id</param>
+        /// <returns>string note message</returns>
+        public string PinOrUnpinNote(int id)
+        {
+            try
+            {
+                var note = this.notesRL.PinOrUnpinNote(id);
+                return note;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Method to Call PinOrUnpinNote() method to Pin Or Unpin a Note 
+        /// </summary>
+        /// <param name="id">note id</param>
+        /// <returns>string note message</returns>
         public string ArchiveOrUnArchiveNote(int id)
         {
             try
             {
-                var note = this.notes.ArchiveOrUnArchiveNote(id);
+                var note = this.notesRL.ArchiveOrUnArchiveNote(id);
                 return note;
             }
             catch (Exception ex)
@@ -137,7 +137,7 @@ namespace Business_Layer.Services
         {
             try
             {
-                var note = this.notes.GetAllArchivedNotes();
+                var note = this.notesRL.GetAllArchivedNotes();
                 return note;
             }
             catch (Exception ex)
@@ -146,14 +146,16 @@ namespace Business_Layer.Services
             }
         }
 
-      
+        /// <summary>
         /// Method to Trash or Restore a note
-       
+        /// </summary>
+        /// <param name="id">note id</param>
+        /// <returns>string message</returns>
         public string TrashOrRestoreNote(int id)
         {
             try
             {
-                var note = this.notes.TrashOrRestoreNote(id);
+                var note = this.notesRL.TrashOrRestoreNote(id);
                 return note;
             }
             catch (Exception ex)
@@ -170,7 +172,7 @@ namespace Business_Layer.Services
         {
             try
             {
-                var note = this.notes.GetAllNotesaFromTrash();
+                var note = this.notesRL.GetAllNotesaFromTrash();
                 return note;
             }
             catch (Exception ex)
@@ -189,7 +191,7 @@ namespace Business_Layer.Services
         {
             try
             {
-                bool result = this.notes.SetReminder(id, reminder);
+                bool result = this.notesRL.SetReminder(id, reminder);
                 return result;
             }
             catch (Exception ex)
@@ -206,7 +208,7 @@ namespace Business_Layer.Services
         {
             try
             {
-                IEnumerable<NotesModel> notes = this.notes.GetAllNotesWhosReminderIsSet();
+                IEnumerable<NotesModel> notes = this.notesRL.GetAllNotesWhosReminderIsSet();
                 return notes;
             }
             catch (Exception ex)
@@ -224,7 +226,7 @@ namespace Business_Layer.Services
         {
             try
             {
-                bool result = this.notes.UnSetReminder(id);
+                bool result = this.notesRL.UnSetReminder(id);
                 return result;
             }
             catch (Exception ex)
@@ -243,7 +245,7 @@ namespace Business_Layer.Services
         {
             try
             {
-                bool result = this.notes.ChangeColor(id, color);
+                bool result = this.notesRL.ChangeColor(id, color);
                 return result;
             }
             catch (Exception ex)
@@ -252,13 +254,17 @@ namespace Business_Layer.Services
             }
         }
 
+        /// <summary>
         /// Method to add image for note
-       
+        /// </summary>
+        /// <param name="id">note id</param>
+        /// <param name="image">selected image</param>
+        /// <returns>boolean result</returns>
         public bool AddImage(int id, IFormFile image)
         {
             try
             {
-                bool result = this.notes.AddImage(id, image);
+                bool result = this.notesRL.AddImage(id, image);
                 return result;
             }
             catch (Exception ex)

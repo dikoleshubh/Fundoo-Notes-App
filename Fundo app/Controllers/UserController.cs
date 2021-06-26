@@ -15,6 +15,7 @@ namespace Fundo_app.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class UserController : ControllerBase
     {
         IUserBL userBl;
@@ -58,8 +59,8 @@ namespace Fundo_app.Controllers
                 return this.BadRequest(new { success = false, message = e.Message, innerExeption = e.InnerException });
             }
         }
-
-        /*[HttpPost]
+        /*
+        [HttpPost]
         [Route("Login")]
         public IActionResult Login([FromBody] LoginModel login)
         {

@@ -100,3 +100,6 @@ C:\Users\Admin\source\repos\Fundo app\bin\Debug\netcoreapp3.1\FundooMSMQ.exe
 C:\Users\Admin\source\repos\Fundo app\bin\Debug\netcoreapp3.1\FundooMSMQ.pdb
 C:\Users\Admin\source\repos\Fundo app\bin\Debug\netcoreapp3.1\FundooMSMQ.exe.config
 C:\Users\Admin\source\repos\Fundo app\obj\Debug\netcoreapp3.1\Fundo app.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Admin\source\repos\Fundo app\bin\Debug\netcoreapp3.1\CloudinaryDotNet.dll
+C:\Users\Admin\source\repos\Fundo app\bin\Debug\netcoreapp3.1\Microsoft.Extensions.WebEncoders.dll
+C:\Users\Admin\source\repos\Fundo app\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll

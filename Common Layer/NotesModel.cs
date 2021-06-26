@@ -10,17 +10,27 @@ namespace Common_Layer
    public  class NotesModel
     {
         [Key]
-        public int NotesId { get; set; }
+        public long NotesId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Reminder { get; set; }
-        public string Collaborator { get; set; }
+       
         public string Color { get; set; }
         public string Image { get; set; }
-        public string Lable { get; set; }
+        //public string Lable { get; set; }
 
         [ForeignKey("User")]
         public long ID { get; set; }
-        public virtual User User { get; set; }
+       
+      //  public virtual User User { get; set; }
+
+        [DefaultValue(false)]
+        public bool Pin { get; set; }
+
+        [DefaultValue(false)]
+        public bool Archieve { get; set; }
+
+        [DefaultValue(false)]
+        public bool Is_Trash { get; set; }
     }
 }

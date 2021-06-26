@@ -27,11 +27,7 @@
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
-            "projectReferences": {
-              "C:\\Users\\Admin\\source\\repos\\FundooMSMQ\\FundooMSMQ.csproj": {
-                "projectPath": "C:\\Users\\Admin\\source\\repos\\FundooMSMQ\\FundooMSMQ.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -44,6 +40,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.15.2, )"
+            },
             "Experimental.System.Messaging": {
               "target": "Package",
               "version": "[1.1.0, )"
@@ -108,16 +108,6 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
-      }
-    },
-    "C:\\Users\\Admin\\source\\repos\\FundooMSMQ\\FundooMSMQ.csproj": {
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\FundooMSMQ\\FundooMSMQ.csproj",
-        "projectName": "FundooMSMQ",
-        "projectPath": "C:\\Users\\Admin\\source\\repos\\FundooMSMQ\\FundooMSMQ.csproj"
-      },
-      "frameworks": {
-        "net48": {}
       }
     }
   }

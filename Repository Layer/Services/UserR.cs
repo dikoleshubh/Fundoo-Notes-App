@@ -39,7 +39,7 @@ namespace Repository_Layer.Services
         }
         private UserContext _userDbContext;
         private readonly IConfiguration configuration;
-        private const string SECRET_KEY = "SuperSecretKey@345fghfghgfhgfhfghfghf";
+        private const string SECRET_KEY = "SuperSecretKey@345fghhhhhhhhhhhhhhhhhhhhhhhhhhhhhfggggggg";
 
         public static readonly SymmetricSecurityKey SIGNING_KEY = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(UserR.SECRET_KEY));
         public UserR(UserContext userDbContext, IConfiguration configuration)
@@ -72,7 +72,7 @@ namespace Repository_Layer.Services
 
         /// <summary>
         /// method to login
-        /// </summary>
+         
         /// <param name="email"></email>
         /// <param name="password"></password>
         /// <returns></returns>
@@ -94,7 +94,8 @@ namespace Repository_Layer.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Email, email)
+                    new Claim(ClaimTypes.Email, email),
+                    new Claim ("ID", result.ID.ToString())
 
                 }),
                 Expires = DateTime.UtcNow.AddDays(1),

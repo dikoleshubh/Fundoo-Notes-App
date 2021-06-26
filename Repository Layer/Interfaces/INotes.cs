@@ -12,13 +12,13 @@ namespace Repository_Layer.Interfaces
         
         /// Method declaration to add new note
        
-        public bool AddNewNote(NotesModel note);
+        public NotesModel AddNewNote(NotesModel note, long ids);
 
         /// <summary>
         /// Method declaration to retrieve all note
         /// </summary>
         /// <returns>all notes</returns>
-        public IEnumerable<NotesModel> RetrievNote();
+       // public IEnumerable<NotesModel> RetrievNote(long ID);
 
         /// <summary>
         /// Method declaration to remove a note

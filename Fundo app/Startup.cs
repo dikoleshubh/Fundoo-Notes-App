@@ -36,10 +36,8 @@ namespace Fundo_app
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(c =>
-            {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
-            });
+            services.AddMvc();
+            
             //var connectionString = Configuration["ConnectionStrings::Default"];
             // services.AddDbContext<UserContext>(opts => opts.UseSqlServer(Configuration["DefaultConnection"]));
             //string connectionString = Configuration.GetConnectionString("Default");
@@ -54,11 +52,15 @@ namespace Fundo_app
             services.AddTransient<IUserBL, UserBL>();
             services.AddTransient<IUserRL, UserR>();
             services.AddControllersWithViews().AddNewtonsoftJson(options =>options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-           // var key = Encoding.UTF8.GetBytes(Configuration["Key"]);
+             //var key = Encoding.UTF8.GetBytes(Configuration["Key"]);
+            services.AddTransient<INotes, NotesRepository>();
+            services.AddTransient<INotesManager, NotesManager>();
+
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(x =>
             {
                 x.RequireHttpsMetadata = false;
@@ -66,7 +68,7 @@ namespace Fundo_app
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ilovecoding")),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("HelloThisTokenIsGeneretedByMe")),
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };
@@ -136,13 +138,16 @@ namespace Fundo_app
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "It's Fundoo v1");
             });
-            app.UseCors(options => options.AllowAnyOrigin());
-
+            app.UseCors("AllowAllHeaders");
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
+
+
 
             app.UseEndpoints(endpoints =>
             {
